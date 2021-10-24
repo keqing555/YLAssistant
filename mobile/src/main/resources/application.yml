@@ -1,0 +1,21 @@
+server:
+  servlet:
+    context-path: /
+  port: 8082
+
+spring:
+  application:
+    name: offcnpe_mobile
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql:///offcnpe
+    username: root
+    password: root
+    type: com.alibaba.druid.pool.DruidDataSource
+dubbo:
+  protocol:
+    name: dubbo
+    port: 20880
+  registry:
+    address: zookeeper://192.168.128.128:2181
+    timeout: 10000

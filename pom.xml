@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <!--父工程，打包方式为pom，统一锁定依赖的版本，同时聚合其他子模块 便于统一执行maven命令-->
+
+    <modelVersion>4.0.0</modelVersion>
+    <!--指定当前工程父工程版本 -->
+    <!--继承spring-boot的版本-->
+    <parent>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <groupId>org.springframework.boot</groupId>
+        <version>2.5.6</version>
+        <relativePath/>
+    </parent>
+
+    <groupId>com.psi</groupId>
+    <artifactId>YLAssistant</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+
+    <modules>
+        <module>interface</module>
+        <module>pojo</module>
+        <module>util</module>
+    </modules>
+
+    <!-- 当前的工程是父工程 统一控制我们技术版本 -->
+    <properties>
+        <java.version>1.8</java.version>
+        <!--mybatis plus-->
+        <baomidou.version>3.4.2</baomidou.version>
+        <!--dubbo-->
+        <dubbo.version>2.7.6</dubbo.version>
+        <!--mysql-->
+        <mysql.version>5.1.47</mysql.version>
+        <!--接口文档-->
+        <swagger.version>2.6.1</swagger.version>
+        <!--poi-->
+        <poi.version>3.14</poi.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- springboot 整合mybatisplus 工具包 -->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${baomidou.version}</version>
+            </dependency>
+            <!-- mybatisplus 代码生成器包 -->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-generator</artifactId>
+                <version>3.4.1</version>
+            </dependency>
+            <!-- 数据库驱动包 -->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.version}</version>
+            </dependency>
+            <!-- 接口文档相关包 -->
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>${swagger.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>${swagger.version}</version>
+            </dependency>
+            <!-- dubbo 服务相关jar -->
+            <dependency>
+                <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo-spring-boot-starter</artifactId>
+                <version>${dubbo.version}</version>
+            </dependency>
+            <!-- poi报表操作包 -->
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi-ooxml</artifactId>
+                <version>${poi.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+</project>
