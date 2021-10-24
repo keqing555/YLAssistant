@@ -5,8 +5,8 @@
     <!--    打包方式为jar，存放服务接口。-->
 
     <parent>
-        <artifactId>YLAssistant</artifactId>
         <groupId>com.psi</groupId>
+        <artifactId>YLAssistant</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
