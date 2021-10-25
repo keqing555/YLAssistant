@@ -285,7 +285,7 @@
             handleEdit() {
                 //关闭编辑窗口
                 this.dialogFormVisible4Edit = false;
-                axios.post("/checkgroup/editCheckgoup?checkitemIds="+this.checkitemIds,this.formData).then((res) => {
+                axios.post("/checkgroup/editCheckgroup?checkitemIds="+this.checkitemIds,this.formData).then((res) => {
                     if(res.data.flag){
                         this.$message({
                             message: res.data.message,
