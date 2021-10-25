@@ -46,7 +46,13 @@ public class CheckgroupController {
         return checkgroupService.addGroup(checkgroup, checkitemIds);
     }
 
-
+    /**
+     * 编辑检查组
+     *
+     * @param checkgroup
+     * @param checkitemIds
+     * @return
+     */
     @RequestMapping("editCheckgroup")
     public Result editCheckgroup(@RequestBody Checkgroup checkgroup, Integer[] checkitemIds) {
         return checkgroupService.editCheckgoup(checkgroup, checkitemIds);
@@ -62,5 +68,9 @@ public class CheckgroupController {
         return checkgroupService.deleteInfoById(id);
     }
 
+    @RequestMapping("getAllGroup")
+    public Result getAllGroup() {
+        return checkgroupService.getAllGroup();
+    }
 }
 

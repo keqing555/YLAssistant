@@ -147,4 +147,18 @@ public class CheckgroupServiceImpl implements CheckgroupService {
         }
         return result;
     }
+
+    @Override
+    public Result getAllGroup() {
+        Result result = new Result();
+        List<Checkgroup> selectList = checkgroupMapper.selectList(null);
+        if (selectList != null && selectList.size() > 0) {
+            result.setFlag(true);
+            result.setData(selectList);
+        } else {
+            result.setFlag(true);
+            result.setMessage(MessageConstant.QUERY_CHECKGROUP_FAIL);
+        }
+        return result;
+    }
 }

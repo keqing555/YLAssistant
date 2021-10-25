@@ -1,0 +1,15 @@
+com\psi\pojo\Order.class
+com\psi\pojo\Permission.class
+com\psi\pojo\Menu.class
+com\psi\pojo\Ordersetting.class
+com\psi\pojo\UserRole.class
+com\psi\pojo\Member.class
+com\psi\pojo\Checkitem.class
+com\psi\pojo\RolePermission.class
+com\psi\pojo\Role.class
+com\psi\pojo\RoleMenu.class
+com\psi\pojo\Checkgroup.class
+com\psi\pojo\SetmealCheckgroup.class
+com\psi\pojo\Setmeal.class
+com\psi\pojo\User.class
+com\psi\pojo\CheckgroupCheckitem.class

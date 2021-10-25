@@ -22,4 +22,6 @@ public interface CheckgroupService {
     Result findGroupById(int id);
     //删除检查组
     Result deleteInfoById(int id);
+    //获取所有检查组
+    Result getAllGroup();
 }
