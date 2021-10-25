@@ -48,7 +48,7 @@ public class CheckgroupController {
 
 
     @RequestMapping("editCheckgroup")
-    public Result editCheckgroup(@RequestBody Checkgroup checkgroup, int[] checkitemIds) {
+    public Result editCheckgroup(@RequestBody Checkgroup checkgroup, Integer[] checkitemIds) {
         return checkgroupService.editCheckgoup(checkgroup, checkitemIds);
     }
 

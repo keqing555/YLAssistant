@@ -16,7 +16,7 @@ public interface CheckgroupService {
     Result addGroup(Checkgroup checkgroup, int[] ids);
 
     //编辑检查组
-    Result editCheckgoup(Checkgroup checkgroup, int[] checkitemIds);
+    Result editCheckgoup(Checkgroup checkgroup, Integer[] checkitemIds);
 
     //根据id查找检查组信息
     Result findGroupById(int id);

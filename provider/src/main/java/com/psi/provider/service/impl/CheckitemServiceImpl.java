@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,7 +26,7 @@ public class CheckitemServiceImpl implements CheckitemService {
     @Autowired
     private CheckitemMapper checkitemMapper;
     @Autowired
-    private CheckgroupCheckitemMapper groupCheckMapper;
+    private CheckgroupCheckitemMapper groupItemMapper;
 
     @Override
     public Result addItem(Checkitem checkitem) {
@@ -103,7 +104,7 @@ public class CheckitemServiceImpl implements CheckitemService {
             //删除关系表相关
             Map<String, Object> map = new HashMap<>();
             map.put("checkitem_id", id);
-            groupCheckMapper.deleteByMap(map);
+            groupItemMapper.deleteByMap(map);
             //删除检查项
             checkitemMapper.deleteById(id);
             result.setFlag(true);
@@ -135,13 +136,18 @@ public class CheckitemServiceImpl implements CheckitemService {
     @Override
     public Result getCheckItemIdsByCheckGroupId(int id) {
         Result result = new Result();
+        //通过map查询CheckgroupCheckitem
         Map<String, Object> map = new HashMap<>();
         map.put("checkgroup_id", id);
-
-        List<CheckgroupCheckitem> checkgroupCheckitems = groupCheckMapper.selectByMap(map);
-        if (checkgroupCheckitems != null && checkgroupCheckitems.size() > 0) {
+        List<CheckgroupCheckitem> groupItems = groupItemMapper.selectByMap(map);
+        if (groupItems != null && groupItems.size() > 0) {
+            //获取查到的所有检查项ids
+            List<Integer> list = new ArrayList<>();
+            for (CheckgroupCheckitem groupItem : groupItems) {
+                list.add(groupItem.getCheckitemId());
+            }
             result.setFlag(true);
-            result.setData(checkgroupCheckitems);
+            result.setData(list);
         } else {
             result.setFlag(false);
             result.setMessage(MessageConstant.QUERY_CHECKITEM_FAIL);

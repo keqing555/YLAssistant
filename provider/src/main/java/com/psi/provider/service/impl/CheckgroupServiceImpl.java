@@ -82,7 +82,7 @@ public class CheckgroupServiceImpl implements CheckgroupService {
 
     @Override
     @Transactional
-    public Result editCheckgoup(Checkgroup checkgroup, int[] checkitemIds) {
+    public Result editCheckgoup(Checkgroup checkgroup, Integer[] checkitemIds) {
         Result result = new Result();
         try {
             //删除原来的检查项
