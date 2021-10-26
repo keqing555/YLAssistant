@@ -65,4 +65,6 @@ public class MessageConstant {
     public static final String GET_SETMEAL_LIST_SUCCESS = "查询套餐列表数据成功";
     public static final String GET_SETMEAL_LIST_FAIL = "查询套餐列表数据失败";
     public static final String CHECK_CODE_REPEAT = "编码重复！";
+    public static final String ALL_PIC ="all_pic";
+    public static final String MYSQL_PIC ="mysql_pic";
 }

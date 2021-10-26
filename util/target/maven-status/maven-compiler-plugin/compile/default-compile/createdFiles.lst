@@ -1,3 +1,4 @@
+com\psi\config\MyMvcConfig.class
 com\psi\util\QueryPageBean.class
 com\psi\util\MessageConstant.class
 com\psi\util\Result.class

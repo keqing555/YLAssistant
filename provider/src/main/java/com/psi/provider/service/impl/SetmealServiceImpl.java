@@ -13,10 +13,16 @@ import com.psi.util.QueryPageBean;
 import com.psi.util.Result;
 import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.SetOperations;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class SetmealServiceImpl implements SetmealService {
@@ -24,6 +30,8 @@ public class SetmealServiceImpl implements SetmealService {
     private SetmealMapper setmealMapper;
     @Autowired
     private SetmealCheckgroupMapper setmealGroupMapper;
+    @Autowired
+    private RedisTemplate redisTemplate;
 
     @Override
     public PageResult findPage(QueryPageBean queryPageBean) {
@@ -66,6 +74,9 @@ public class SetmealServiceImpl implements SetmealService {
             }
             result.setFlag(true);
             result.setMessage(MessageConstant.ADD_SETMEAL_SUCCESS);
+            //添加套餐成功之后，添加图片名称
+            SetOperations<String, String> setOperations = redisTemplate.opsForSet();
+            setOperations.add(MessageConstant.MYSQL_PIC, setmeal.getImg());
         } catch (Exception e) {
             e.printStackTrace();
             result.setFlag(false);
@@ -74,5 +85,24 @@ public class SetmealServiceImpl implements SetmealService {
             TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
         }
         return result;
+    }
+
+    @Override
+    public Result uploadpic(MultipartFile multipartFile) {
+        String originalFilename = multipartFile.getOriginalFilename();
+        int lastIndexOf = originalFilename.lastIndexOf(".");
+        //获取文件后缀，附带上点.
+        String suffix = originalFilename.substring(lastIndexOf - 1);
+        String fileName = UUID.randomUUID() + suffix;
+        File file = new File("D:/Upload/YLAssistant/" + fileName);
+        try {
+            //上传图片
+            multipartFile.transferTo(file);
+            //返回图片名称
+            return new Result(true, MessageConstant.PIC_UPLOAD_SUCCESS, fileName);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return new Result(false, MessageConstant.PIC_UPLOAD_FAIL);
     }
 }

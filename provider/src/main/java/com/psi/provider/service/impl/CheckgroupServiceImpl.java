@@ -4,9 +4,11 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.psi.pojo.Checkgroup;
 import com.psi.pojo.CheckgroupCheckitem;
+import com.psi.pojo.SetmealCheckgroup;
 import com.psi.provider.mapper.CheckgroupCheckitemMapper;
 import com.psi.provider.mapper.CheckgroupMapper;
 import com.psi.provider.mapper.CheckitemMapper;
+import com.psi.provider.mapper.SetmealCheckgroupMapper;
 import com.psi.service.CheckgroupService;
 import com.psi.util.MessageConstant;
 import com.psi.util.PageResult;
@@ -27,8 +29,8 @@ public class CheckgroupServiceImpl implements CheckgroupService {
     private CheckgroupMapper checkgroupMapper;
     @Autowired
     private CheckgroupCheckitemMapper groupItemMapper;
-//    @Autowired
-//    private CheckitemMapper checkitemMapper;
+    @Autowired
+    private SetmealCheckgroupMapper setmealGroupMapper;
 
     @Override
     public PageResult findPage(QueryPageBean queryPageBean) {
@@ -130,10 +132,14 @@ public class CheckgroupServiceImpl implements CheckgroupService {
     public Result deleteInfoById(int id) {
         Result result = new Result();
         try {
-            //先删除价差组的检查项（外键约束）
+            //删除检查组--检查项（外键约束）
             QueryWrapper<CheckgroupCheckitem> wrapper = new QueryWrapper<>();
             wrapper.eq("checkgroup_id", id);
             groupItemMapper.delete(wrapper);
+            //删除套餐--检查组关系表
+            Map<String, Object> map = new HashMap<>();
+            map.put("checkgroup_id", id);
+            setmealGroupMapper.deleteByMap(map);
             //删除检查组
             checkgroupMapper.deleteById(id);
             result.setFlag(true);
