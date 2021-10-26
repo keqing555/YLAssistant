@@ -60,8 +60,8 @@ public class CheckitemServiceImpl implements CheckitemService {
         }
         //分页查询数据
         Page<Checkitem> checkitemPage = checkitemMapper.selectPage(page, queryWrapper);
-        PageResult pageResult = new PageResult(checkitemPage.getTotal(), checkitemPage.getRecords());
-        return pageResult;
+        return new PageResult(checkitemPage.getTotal(), checkitemPage.getRecords());
+
 
     }
 

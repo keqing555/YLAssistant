@@ -18,7 +18,7 @@ public class CleanUpPicJob {
     private RedisTemplate redisTemplate;
 
     //五分钟执行一次
-    @Scheduled(cron = "0 0/5 * * * ? *")
+    @Scheduled(cron = "0/20 * * * * ? ")
     public void clean() {
         SetOperations<String, String> setOperations = redisTemplate.opsForSet();
         Set<String> difference = setOperations.difference(MessageConstant.ALL_PIC, MessageConstant.MYSQL_PIC);

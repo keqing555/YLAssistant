@@ -20,6 +20,14 @@ spring:
     host: 192.168.128.128
     port: 6379
     password: root
+  servlet:
+    multipart:
+      #单个文件上传大小限制
+      max-file-size: 10MB
+      #单个请求文件总大小：不限
+      max-request-size: -1
+
+
 dubbo:
   protocol:
     name: dubbo

@@ -5,9 +5,10 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
-public class MyMvcConfig implements WebMvcConfigurer {
+public class MyWebMvcConfigurer implements WebMvcConfigurer {
     /**
-     * 添加静态资源访问路径
+     * 设置静态资源虚拟访问路径
+     *
      * @param registry
      */
     @Override

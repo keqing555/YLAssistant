@@ -64,6 +64,7 @@ public class SetmealController {
     /**
      * 上传图片
      * 写在控制层，因为在服务层需要实现序列化
+     *
      * @param multipartFile
      * @return
      */
@@ -73,8 +74,8 @@ public class SetmealController {
 
         String originalFilename = multipartFile.getOriginalFilename();
         int lastIndexOf = originalFilename.lastIndexOf(".");
-        //获取文件后缀，附带上点.
-        String suffix = originalFilename.substring(lastIndexOf - 1);
+        //获取文件后缀，.jpg
+        String suffix = originalFilename.substring(lastIndexOf);
         //生成随机名称
         String fileName = UUID.randomUUID() + suffix;
         File file = new File("D:/Upload/YLAssistant/" + fileName);
@@ -82,14 +83,14 @@ public class SetmealController {
             //上传图片
             multipartFile.transferTo(file);
             //在redis里存储图片名称
-            SetOperations<String,String> setOperations = redisTemplate.opsForSet();
-            setOperations.add(MessageConstant.ALL_PIC,fileName);
+            SetOperations<String, String> setOperations = redisTemplate.opsForSet();
+            setOperations.add(MessageConstant.ALL_PIC, fileName);
             //返回图片名称
             return new Result(true, MessageConstant.PIC_UPLOAD_SUCCESS, fileName);
         } catch (IOException e) {
             e.printStackTrace();
+            return new Result(false, MessageConstant.PIC_UPLOAD_FAIL);
         }
-        return new Result(false, MessageConstant.PIC_UPLOAD_FAIL);
     }
 }
 
