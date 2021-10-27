@@ -1,3 +1,4 @@
 com\psi\service\CheckitemService.class
+com\psi\service\OrderSettingService.class
 com\psi\service\SetmealService.class
 com\psi\service\CheckgroupService.class

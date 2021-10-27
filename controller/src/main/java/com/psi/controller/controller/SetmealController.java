@@ -77,7 +77,7 @@ public class SetmealController {
         //获取文件后缀，.jpg
         String suffix = originalFilename.substring(lastIndexOf);
         //生成随机名称
-        String fileName = UUID.randomUUID() + suffix;
+        String fileName = UUID.randomUUID().toString() + suffix;
         File file = new File("D:/Upload/YLAssistant/" + fileName);
         try {
             //上传图片

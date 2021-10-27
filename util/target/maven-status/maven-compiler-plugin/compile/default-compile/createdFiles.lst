@@ -3,3 +3,4 @@ com\psi\util\MessageConstant.class
 com\psi\util\Result.class
 com\psi\config\MyWebMvcConfigurer.class
 com\psi\util\PageResult.class
+com\psi\util\POIUtils.class
