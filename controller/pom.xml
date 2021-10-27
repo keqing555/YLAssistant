@@ -11,12 +11,11 @@
     </parent>
 
     <artifactId>controller</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
     <name>controller</name>
     <description>controller</description>
 
     <dependencies>
-        <!--引入interface模块-->
+        <!--引入interface，util模块-->
         <dependency>
             <groupId>com.psi</groupId>
             <artifactId>interface</artifactId>
@@ -31,6 +30,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+
         <!-- 项目初期没有用到权限管理的时候将这个依赖暂时注释掉 -->
 <!--        <dependency>-->
 <!--            <groupId>org.springframework.boot</groupId>-->

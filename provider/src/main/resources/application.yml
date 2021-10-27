@@ -30,7 +30,7 @@ mybatis-plus:
   #加载xml文件
   mapper-locations: classpath:/mappers/*.xml
   #设置别名
-  type-aliases-package: com.psi.pojo
+  type-aliases-package: com.psi.sprigboot.pojo
 
 #Dubbo端口，名称
 dubbo:
@@ -39,6 +39,7 @@ dubbo:
     port: 20880
   registry:
     address: zookeeper://192.168.128.128:2181
-    timeout: 20000
+    timeout: 60000
   scan:
-    base-packages: com.psi.provider.service.impl
+    #要暴露服务所在包
+    base-packages: com.psi.springboot.service.impl

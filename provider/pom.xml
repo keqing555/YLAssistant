@@ -16,10 +16,15 @@
        springboot  mybatisplus  数据库驱动 连接池  dubbo  zookeeper..
     -->
     <dependencies>
-        <!--引入interface模块-->
+        <!--引入interface,util模块-->
         <dependency>
             <groupId>com.psi</groupId>
             <artifactId>interface</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.psi</groupId>
+            <artifactId>util</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
 

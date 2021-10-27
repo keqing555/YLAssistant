@@ -1,4 +1,4 @@
-package com.psi.controller;
+package com.psi.springboot;
 
 
 import org.springframework.web.bind.annotation.RequestMapping;
