@@ -8,9 +8,11 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.util.List;
+
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author psi
@@ -23,7 +25,7 @@ public class Setmeal extends Model {
 
     private static final long serialVersionUID = 1L;
 
-      @TableId(value = "id", type = IdType.AUTO)
+    @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
     private String name;
@@ -44,6 +46,6 @@ public class Setmeal extends Model {
     private String attention;
 
     private String img;
-
-
+    @TableField(exist = false)
+    private List<Checkgroup> checkgroups;
 }

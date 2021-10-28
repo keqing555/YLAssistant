@@ -8,9 +8,11 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.util.List;
+
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author psi
@@ -23,7 +25,7 @@ public class Checkgroup extends Model {
 
     private static final long serialVersionUID = 1L;
 
-      @TableId(value = "id", type = IdType.AUTO)
+    @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
     private String code;
@@ -38,6 +40,6 @@ public class Checkgroup extends Model {
     private String remark;
 
     private String attention;
-
-
+    @TableField(exist = false)
+    private List<Checkitem> checkitems;
 }

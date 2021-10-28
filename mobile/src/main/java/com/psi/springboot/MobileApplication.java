@@ -8,6 +8,7 @@ public class MobileApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(MobileApplication.class, args);
+        System.out.println("移动端启动完成......");
     }
 
 }

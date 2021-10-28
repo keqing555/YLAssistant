@@ -12,6 +12,7 @@ public class JobApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(JobApplication.class, args);
+        System.out.println("定时器启动......");
     }
 
 }

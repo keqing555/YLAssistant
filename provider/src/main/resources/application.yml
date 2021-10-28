@@ -30,7 +30,7 @@ mybatis-plus:
   #加载xml文件
   mapper-locations: classpath:/mappers/*.xml
   #设置别名
-  type-aliases-package: com.psi.sprigboot.pojo
+  type-aliases-package: com.psi.springboot.pojo
 
 #Dubbo端口，名称
 dubbo:
