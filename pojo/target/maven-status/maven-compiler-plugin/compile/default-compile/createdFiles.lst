@@ -1,0 +1,15 @@
+com\psi\springboot\pojo\Order.class
+com\psi\springboot\pojo\UserRole.class
+com\psi\springboot\pojo\Role.class
+com\psi\springboot\pojo\Checkgroup.class
+com\psi\springboot\pojo\Permission.class
+com\psi\springboot\pojo\CheckgroupCheckitem.class
+com\psi\springboot\pojo\Checkitem.class
+com\psi\springboot\pojo\SetmealCheckgroup.class
+com\psi\springboot\pojo\RoleMenu.class
+com\psi\springboot\pojo\Setmeal.class
+com\psi\springboot\pojo\Member.class
+com\psi\springboot\pojo\Ordersetting.class
+com\psi\springboot\pojo\Menu.class
+com\psi\springboot\pojo\RolePermission.class
+com\psi\springboot\pojo\User.class

@@ -40,7 +40,6 @@ public class OrderServiceImpl implements OrderService {
         String sex = paramsMap.get("sex");
         String telephone = paramsMap.get("telephone");
         LocalDate orderDate = LocalDate.parse(paramsMap.get("orderDate"));
-//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         int setmealId = Integer.parseInt(paramsMap.get("setmealId"));
         try {
             //判断该手机号是否已注册
@@ -50,7 +49,10 @@ public class OrderServiceImpl implements OrderService {
             if (member != null) {
                 //已注册
                 QueryWrapper<Order> queryWrapper1 = new QueryWrapper<>();
-                queryWrapper1.gt("orderDate", orderDate);
+                //从预约日期及其以后的排程
+              //  queryWrapper1.ge("orderDate", orderDate);//ge：大于等于；gt：大于
+                //从今天开始第二天的排程
+                queryWrapper1.gt("orderDate",new Date());
                 List<Order> orderList = orderMapper.selectList(queryWrapper1);
                 for (Order order : orderList) {
                     if (order.getSetmealId() == setmealId) {
@@ -70,14 +72,21 @@ public class OrderServiceImpl implements OrderService {
                 newMember.setRegtime(LocalDate.now());
                 memberMapper.insert(newMember);
             }
-            //判断预约人数是否已满
+            //判断预约人数是否已满，或者是否有预约排程
             QueryWrapper<Ordersetting> queryWrapper1 = new QueryWrapper<>();
             queryWrapper1.eq("orderDate", orderDate);
             Ordersetting ordersetting = ordersettingMapper.selectOne(queryWrapper1);
-            if (ordersetting.getNumber() < ordersetting.getReservations()) {
-                //预约已满
+            if (ordersetting != null) {
+                if (ordersetting.getNumber() <= ordersetting.getReservations()) {
+                    //预约已满
+                    result.setFlag(false);
+                    result.setMessage(MessageConstant.ORDER_FULL);
+                    return result;
+                }
+            } else {
+                //没有排程
                 result.setFlag(false);
-                result.setMessage(MessageConstant.ORDER_FULL);
+                result.setMessage(MessageConstant.SELECTED_DATE_CANNOT_ORDER);
                 return result;
             }
             //开始预约
