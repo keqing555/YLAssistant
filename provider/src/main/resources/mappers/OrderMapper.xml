@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.psi.mapper.OrderMapper">
-
+<mapper namespace="com.psi.springboot.mappers.OrderMapper">
+    <select id="getHotSetmeal" resultType="map">
+        SELECT s.name,
+               COUNT(o.setmeal_id)               AS setmeal_count,
+               COUNT(s.id) / COUNT(o.setmeal_id) AS proportion
+        FROM t_order o,
+             t_setmeal s
+        WHERE s.id = o.setmeal_id
+        ORDER BY setmeal_count DESC LIMIT 3
+    </select>
 </mapper>

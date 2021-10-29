@@ -1,6 +1,7 @@
-com\psi\springboot\service\CheckgroupService.class
-com\psi\springboot\service\CheckitemService.class
 com\psi\springboot\service\SetmealService.class
 com\psi\springboot\service\ClientService.class
 com\psi\springboot\service\OrderService.class
 com\psi\springboot\service\OrderSettingService.class
+com\psi\springboot\service\CheckgroupService.class
+com\psi\springboot\service\CheckitemService.class
+com\psi\springboot\service\ReportService.class

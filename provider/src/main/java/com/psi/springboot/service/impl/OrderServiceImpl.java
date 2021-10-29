@@ -50,9 +50,9 @@ public class OrderServiceImpl implements OrderService {
                 //已注册
                 QueryWrapper<Order> queryWrapper1 = new QueryWrapper<>();
                 //从预约日期及其以后的排程
-              //  queryWrapper1.ge("orderDate", orderDate);//ge：大于等于；gt：大于
+                //  queryWrapper1.ge("orderDate", orderDate);//ge：大于等于；gt：大于
                 //从今天开始第二天的排程
-                queryWrapper1.gt("orderDate",new Date());
+                queryWrapper1.gt("orderDate", new Date());
                 List<Order> orderList = orderMapper.selectList(queryWrapper1);
                 for (Order order : orderList) {
                     if (order.getSetmealId() == setmealId) {
@@ -94,7 +94,7 @@ public class OrderServiceImpl implements OrderService {
             //根据手机号再次查询-新增-的用户，以获取id
             order.setMemberId(memberMapper.selectOne(queryWrapper).getId());
             order.setOrderdate(orderDate);
-            order.setOrderstatus("未就趁");
+            order.setOrderstatus("未就诊");
             order.setOrdertype("微信小程序");
             order.setSetmealId(setmealId);
             //插入预约数据
