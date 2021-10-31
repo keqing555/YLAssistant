@@ -17,6 +17,10 @@ import java.util.List;
 public class ClientServiceImpl implements ClientService {
     @Autowired
     private SetmealMapper setmealMapper;
+    @Autowired
+    private CheckgroupMapper checkgroupMapper;
+    @Autowired
+    private CheckitemMapper checkitemMapper;
 
     @Override
     public Result getAllSetmeal() {
@@ -35,21 +39,18 @@ public class ClientServiceImpl implements ClientService {
     @Override
     public Result findInfoById(int id) {
         Result result = new Result();
-        List<Setmeal> setmealList = setmealMapper.findInfoById(id);
-        //获取第一个套餐
-        Setmeal firstSetmeal = setmealList.get(0);
-        List<Checkgroup> checkgroupList = new ArrayList<>();
-        if (setmealList != null) {
-            for (Setmeal setmeal : setmealList) {
-                //把所有检查组都加到第一个集合里
-                setmeal.getCheckgroups().forEach(g -> checkgroupList.add(g));
-            }
-            firstSetmeal.setCheckgroups(checkgroupList);
-            result.setFlag(true);
-            result.setData(firstSetmeal);
-        } else {
-            result.setFlag(false);
+        //获取套餐
+        Setmeal setmeal = setmealMapper.selectById(id);
+        //获取套餐的检查组
+        List<Checkgroup> checkgroupList = checkgroupMapper.findListBySetmealId(id);
+        for (Checkgroup checkgroup : checkgroupList) {
+            //获取检查组的检查项
+            checkgroup.setCheckitems(checkitemMapper.findListByCheckgroupId(checkgroup.getId()));
         }
+        //获取套餐的检查组
+        setmeal.setCheckgroups(checkgroupList);
+        result.setFlag(true);
+        result.setData(setmeal);
         return result;
     }
 }

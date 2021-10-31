@@ -12,11 +12,12 @@ import com.psi.springboot.util.Result;
 import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Service
-public class ReportServiceImpl implements ReportService {
+public class ReportServiceImpl implements ReportService,Serializable {
     @Autowired
     private MemberMapper memberMapper;
     @Autowired
@@ -157,4 +158,6 @@ public class ReportServiceImpl implements ReportService {
         result.setData(map);
         return result;
     }
+
+
 }

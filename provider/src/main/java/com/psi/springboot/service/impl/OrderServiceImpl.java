@@ -32,15 +32,16 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     @Transactional
-    public Result submitOrder(Map<String, String> paramsMap) {
+    public Result submitOrder(Map<String, Object> paramsMap) {
         Result result = new Result();
         //获取传参
-        String idCard = paramsMap.get("idCard");
-        String name = paramsMap.get("name");
-        String sex = paramsMap.get("sex");
-        String telephone = paramsMap.get("telephone");
-        LocalDate orderDate = LocalDate.parse(paramsMap.get("orderDate"));
-        int setmealId = Integer.parseInt(paramsMap.get("setmealId"));
+        String idCard = (String) paramsMap.get("idCard");
+        String name = (String) paramsMap.get("name");
+        String sex = (String) paramsMap.get("sex");
+        String telephone = (String) paramsMap.get("telephone");
+        //日期转为LocalDate
+        LocalDate orderDate = LocalDate.parse((String) paramsMap.get("orderDate"));
+        Integer setmealId = Integer.parseInt((String) paramsMap.get("setmealId"));
         try {
             //判断该手机号是否已注册
             QueryWrapper<Member> queryWrapper = new QueryWrapper<>();
@@ -102,6 +103,9 @@ public class OrderServiceImpl implements OrderService {
             //预约人数 +1
             ordersetting.setReservations(ordersetting.getReservations() + 1);
             ordersettingMapper.updateById(ordersetting);
+            result.setFlag(true);
+            result.setMessage(MessageConstant.ORDER_SUCCESS);
+            result.setData(order.getId());//返回预约订单id
         } catch (Exception e) {
             e.printStackTrace();
             result.setFlag(false);
@@ -109,8 +113,6 @@ public class OrderServiceImpl implements OrderService {
             //手动回滚
             TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
         }
-        result.setFlag(true);
-        result.setMessage(MessageConstant.ORDER_SUCCESS);
         return result;
     }
 
@@ -125,11 +127,6 @@ public class OrderServiceImpl implements OrderService {
         QueryWrapper<Setmeal> queryWrapper1 = new QueryWrapper<>();
         queryWrapper1.eq("id", order.getSetmealId());
         Setmeal setmeal = setmealMapper.selectOne(queryWrapper1);
-/*       前后端映射关系
-        <p>体检人：{{orderInfo.member}}</p>
-        <p>体检套餐：{{orderInfo.setmeal}}</p>
-        <p>体检日期：{{orderInfo.orderDate}}</p>
-        <p>预约类型：{{orderInfo.orderType}}</p>*/
         Map<String, String> orderInfo = new HashMap<>();
         orderInfo.put("member", member.getName());
         orderInfo.put("setmeal", setmeal.getName());

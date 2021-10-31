@@ -25,8 +25,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class CheckgroupController {
     @Reference
     private CheckgroupService checkgroupService;
-//    @Reference
-//    private CheckitemService checkitemService;
 
     @RequestMapping("findPage")
     public PageResult findPage(@RequestBody QueryPageBean queryPageBean) {

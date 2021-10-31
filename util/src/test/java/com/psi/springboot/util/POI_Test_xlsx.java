@@ -75,7 +75,6 @@ public class POI_Test_xlsx {
      */
     @Test
     public void poi3() throws IOException {
-
         //创建空XSSF工作簿
         XSSFWorkbook xssfWorkbook = new XSSFWorkbook();
         //创建一个sheet

@@ -63,7 +63,7 @@ public class SetmealController {
 
     /**
      * 上传图片
-     * 写在控制层，因为在服务层需要实现序列化
+     * 都在控制层处理，因为在服务层传输需要实现序列化
      *
      * @param multipartFile
      * @return

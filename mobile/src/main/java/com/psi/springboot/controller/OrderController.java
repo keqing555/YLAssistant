@@ -22,7 +22,7 @@ public class OrderController {
      * @return
      */
     @RequestMapping("submitOrder")
-    public Result submitOrder(@RequestBody Map<String, String> paramsMap) {
+    public Result submitOrder(@RequestBody Map<String, Object> paramsMap) {
         return orderService.submitOrder(paramsMap);
 
     }

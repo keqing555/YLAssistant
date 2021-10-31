@@ -9,7 +9,7 @@ import java.util.Map;
  */
 public interface OrderService {
     //提交预约信息
-    Result submitOrder(Map<String, String> paramsMap);
+    Result submitOrder(Map<String, Object> paramsMap);
     //根据id查预约信息
     Result findOrderById(int id);
 }

@@ -2,6 +2,7 @@ package com.psi.springboot.service;
 
 import com.psi.springboot.pojo.Ordersetting;
 import com.psi.springboot.util.Result;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 

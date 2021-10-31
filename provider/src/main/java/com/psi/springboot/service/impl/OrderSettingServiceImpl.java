@@ -5,11 +5,13 @@ import com.psi.springboot.pojo.Ordersetting;
 import com.psi.springboot.mappers.OrdersettingMapper;
 import com.psi.springboot.service.OrderSettingService;
 import com.psi.springboot.util.MessageConstant;
+import com.psi.springboot.util.POIUtils;
 import com.psi.springboot.util.Result;
 import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -29,6 +31,9 @@ public class OrderSettingServiceImpl implements OrderSettingService {
         if (list != null && list.size() > 0) {
             try {
                 for (String[] row : list) {
+                    if (row == null || "".equals(row)) {
+                        continue;
+                    }
                     //List存储的每一个String[]，每一条都是一行数据，类型为Ordersetting
                     Ordersetting ordersetting = new Ordersetting();
                     //创建日期模板

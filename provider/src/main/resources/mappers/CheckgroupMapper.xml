@@ -1,22 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.psi.springboot.mappers.CheckgroupMapper">
-    <resultMap id="findListMap" type="checkgroup">
-        <id column="id" property="id"/>
-        <result column="code" property="code"/>
-        <result column="name" property="name"/>
-        <result column="helpCode" property="helpcode"/>
-        <result column="sex" property="sex"/>
-        <result column="remark" property="remark"/>
-        <result column="attention" property="attention"/>
-        <collection property="checkitems" column="checkitem_id" ofType="checkitem"
-                    select="com.psi.springboot.mappers.CheckitemMapper.findListById"/>
-    </resultMap>
-
-    <select id="findListById" resultMap="findListMap">
-        select g.*, cc.checkitem_id
-        from t_checkgroup g,
-             t_checkgroup_checkitem cc
-        where g.id = cc.checkgroup_id and g.id=#{id}
+    <select id="findListBySetmealId" resultType="checkgroup">
+        select g.*
+        from t_checkgroup g
+                 left join
+             t_setmeal_checkgroup sg
+             on g.id = sg.checkgroup_id
+        where sg.setmeal_id = #{id}
     </select>
 </mapper>

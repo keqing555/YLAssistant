@@ -16,5 +16,5 @@ import java.util.List;
 public interface CheckgroupMapper extends BaseMapper<Checkgroup> {
 
     //根据套餐id查检查组
-    List<Checkgroup> findListById(int id);
+    List<Checkgroup> findListBySetmealId(int id);
 }

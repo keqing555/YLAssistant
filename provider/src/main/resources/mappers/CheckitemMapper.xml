@@ -1,20 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.psi.springboot.mappers.CheckitemMapper">
-    <resultMap id="checkitemListMap" type="checkitem">
-        <id column="id" property="id"/>
-        <result column="code" property="code"/>
-        <result column="name" property="name"/>
-        <result column="sex" property="sex"/>
-        <result column="age" property="age"/>
-        <result column="price" property="price"/>
-        <result column="type" property="type"/>
-        <result column="ateention" property="ateention"/>
-        <result column="remark" property="remark"/>
-    </resultMap>
-    <select id="findListById" resultMap="checkitemListMap">
+    <select id="findListByCheckgroupId" resultType="checkitem">
         select i.*
         from t_checkitem i
-        where i.id = #{id}
+                 left join t_checkgroup_checkitem gi
+                           on i.id = gi.checkitem_id
+        where gi.checkgroup_id = #{id}
     </select>
 </mapper>

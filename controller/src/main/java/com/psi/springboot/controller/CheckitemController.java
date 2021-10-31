@@ -26,7 +26,6 @@ public class CheckitemController {
     @Reference
     private CheckitemService checkitemService;
 
-
     /**
      * 新增检查项
      *

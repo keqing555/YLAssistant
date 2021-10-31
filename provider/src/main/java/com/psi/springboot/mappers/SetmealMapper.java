@@ -14,6 +14,5 @@ import java.util.List;
  * @since 2021-10-24
  */
 public interface SetmealMapper extends BaseMapper<Setmeal> {
-     //根据套餐id查询套餐所有信息
-     List<Setmeal> findInfoById(int id);
+
 }

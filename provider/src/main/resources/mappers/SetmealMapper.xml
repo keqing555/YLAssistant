@@ -1,36 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.psi.springboot.mappers.SetmealMapper">
-    <!--    <select id="findInfoById" resultType="Setmeal">-->
-    <!--        SELECT s.*, g.*, i.*-->
-    <!--        FROM t_setmeal s-->
-    <!--                 LEFT JOIN t_setmeal_checkgroup sg ON s.id = sg.setmeal_id-->
-    <!--                 RIGHT JOIN t_checkgroup g ON sg.checkgroup_id = g.id-->
-    <!--                 LEFT JOIN t_checkgroup_checkitem gi ON g.id = gi.checkgroup_id-->
-    <!--                 RIGHT JOIN t_checkitem i ON gi.checkitem_id = i.id-->
-    <!--        WHERE s.id = 34 LIMIT 1-->
-    <!--    </select>-->
 
-    <resultMap id="setmealMap" type="setmeal">
-        <id column="id" property="id"/>
-        <result column="name" property="name"/>
-        <result column="code" property="code"/>
-        <result column="helpCode" property="helpcode"/>
-        <result column="sex" property="sex"/>
-        <result column="age" property="age"/>
-        <result column="price" property="price"/>
-        <result column="remark" property="remark"/>
-        <result column="attention" property="attention"/>
-        <result column="remark" property="remark"/>
-        <result column="img" property="img"/>
-        <collection property="checkgroups" column="checkgroup_id" ofType="checkgroup"
-                    select="com.psi.springboot.mappers.CheckgroupMapper.findListById"/>
-    </resultMap>
-    <select id="findInfoById" resultMap="setmealMap">
-        select s.*, sg.checkgroup_id
-        from t_setmeal s,
-             t_setmeal_checkgroup sg
-        where s.id = sg.setmeal_id
-          and s.id = #{id}
-    </select>
 </mapper>

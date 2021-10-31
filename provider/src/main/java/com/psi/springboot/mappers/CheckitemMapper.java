@@ -15,5 +15,5 @@ import java.util.List;
  */
 public interface CheckitemMapper extends BaseMapper<Checkitem> {
     //根据检查组id查检查项
-    List<Checkitem> findListById(int id);
+    List<Checkitem> findListByCheckgroupId(int id);
 }
