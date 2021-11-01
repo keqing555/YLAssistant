@@ -74,9 +74,11 @@ public class OrderServiceImpl implements OrderService {
                 memberMapper.insert(newMember);
             }
             //判断预约人数是否已满，或者是否有预约排程
-            QueryWrapper<Ordersetting> queryWrapper1 = new QueryWrapper<>();
-            queryWrapper1.eq("orderDate", orderDate);
-            Ordersetting ordersetting = ordersettingMapper.selectOne(queryWrapper1);
+//            QueryWrapper<Ordersetting> queryWrapper1 = new QueryWrapper<>();
+//            queryWrapper1.eq("orderDate", orderDate);
+//            Ordersetting ordersetting = ordersettingMapper.selectOne(queryWrapper1);
+            //悲观锁查询
+            Ordersetting ordersetting = ordersettingMapper.selectOrdersettingByOrderDate((String) paramsMap.get("orderDate"));
             if (ordersetting != null) {
                 if (ordersetting.getNumber() <= ordersetting.getReservations()) {
                     //预约已满
@@ -102,6 +104,7 @@ public class OrderServiceImpl implements OrderService {
             orderMapper.insert(order);
             //预约人数 +1
             ordersetting.setReservations(ordersetting.getReservations() + 1);
+            //释放悲观锁
             ordersettingMapper.updateById(ordersetting);
             result.setFlag(true);
             result.setMessage(MessageConstant.ORDER_SUCCESS);
