@@ -1,16 +1,20 @@
 package com.psi.springboot.pojo;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
+
 import java.time.LocalDate;
+import java.util.List;
+
 import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author psi
@@ -23,7 +27,7 @@ public class User extends Model {
 
     private static final long serialVersionUID = 1L;
 
-      @TableId(value = "id", type = IdType.AUTO)
+    @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
     private LocalDate birthday;
@@ -40,5 +44,6 @@ public class User extends Model {
 
     private String telephone;
 
-
+    @TableField(exist = false)
+    private List<Role> roles;
 }

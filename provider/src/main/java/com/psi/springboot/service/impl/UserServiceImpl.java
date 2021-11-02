@@ -2,6 +2,7 @@ package com.psi.springboot.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.psi.springboot.mappers.UserMapper;
+import com.psi.springboot.pojo.Role;
 import com.psi.springboot.pojo.User;
 import com.psi.springboot.service.UserService;
 import com.psi.springboot.util.MessageConstant;
@@ -46,5 +47,10 @@ public class UserServiceImpl implements UserService {
             result.setMessage(MessageConstant.LOGIN_FAIL);
         }
         return result;
+    }
+
+    @Override
+    public User getUserByUsername(String username) {
+        return userMapper.getUserByUsername(username);
     }
 }

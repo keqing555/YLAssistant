@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.psi.mapper.UserMapper">
+<mapper namespace="com.psi.springboot.mappers.UserMapper">
+    <resultMap id="userMap" type="user">
+        <id property="id" column="id"/>
+        <result property="birthday" column="birthday"/>
+        <result property="gender" column="gender"/>
+        <result property="birthday" column="birthday"/>
+        <result property="username" column="username"/>
+        <result property="password" column="password"/>
+        <result property="remark" column="remark"/>
+        <result property="station" column="station"/>
+        <result property="telephone" column="telephone"/>
+        <collection property="roles" column="id" ofType="role">
+            <id property="id" column="id"/>
+            <result property="name" column="name"/>
+            <result property="keyword" column="keyword"/>
+        </collection>
+    </resultMap>
+    <select id="getUserByUsername" resultMap="userMap">
 
+    </select>
 </mapper>
