@@ -32,7 +32,7 @@
             </div>
 
             <div class="button">
-                <input type="button" onclick="toSubmit()"  class="login-btn register-btn" id="button"/>
+                <input type="button" onclick="toSubmit()" value="登  录" class="login-btn register-btn" id="button"/>
             </div>
         </form>
         <div class="remember clearfix">
@@ -61,10 +61,10 @@
             data: form,
             contentType: "application/x-www-form-urlencoded",
             success: function (res) {
-                alert(res.message);
                 if(res.flag){
                     window.location.href="/pages/main.html";
                 }else{
+                    alert(res.message);
                     window.location.reload();
                 }
 

@@ -4,4 +4,6 @@ com\psi\springboot\service\OrderService.class
 com\psi\springboot\service\OrderSettingService.class
 com\psi\springboot\service\CheckgroupService.class
 com\psi\springboot\service\CheckitemService.class
+com\psi\springboot\service\UserService.class
+com\psi\springboot\service\MenuService.class
 com\psi\springboot\service\ReportService.class

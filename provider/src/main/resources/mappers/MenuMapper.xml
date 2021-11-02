@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.psi.mapper.MenuMapper">
-
+<mapper namespace="com.psi.springboot.mappers.MenuMapper">
+    <select id="getMenusByUid" resultType="menu">
+        SELECT m.id,m.path, m.name, m.linkUrl, m.icon,m.level,m.parentMenuId
+        FROM t_menu m
+                 LEFT JOIN t_role_menu rm ON m.id = rm.menu_id
+                 LEFT JOIN t_user_role ur ON rm.role_id = ur.role_id
+        WHERE ur.user_id = #{uid}
+    </select>
 </mapper>
