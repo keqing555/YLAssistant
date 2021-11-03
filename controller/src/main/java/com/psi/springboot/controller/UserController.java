@@ -18,8 +18,8 @@ import javax.servlet.http.HttpSession;
  * @author psi
  * @since 2021-10-24
  */
-@Controller
-@RequestMapping("/user")
+//@Controller
+//@RequestMapping("/user")
 public class UserController {
     @Reference
     private UserService userService;

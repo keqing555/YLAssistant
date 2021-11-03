@@ -22,11 +22,15 @@ public class MyAuthenticationAccessDeniedHandler implements AccessDeniedHandler 
             throws IOException, ServletException {
         //打印异常日志
         exception.printStackTrace();
-        Result result = new Result(false, "没有访问权限");
-        response.setContentType("application/json;charset=utf-8");
-        PrintWriter out = response.getWriter();
-        out.write(JSONObject.toJSONString(result));
-        out.flush();
-        out.close();
+        //重定向
+        response.sendRedirect("/pages/error.html");
+        //请求转发
+        // request.getRequestDispatcher("/pages/error.html").forward(request, response);
+//        Result result = new Result(false, "没有访问权限");
+//        response.setContentType("application/json;charset=utf-8");
+//        PrintWriter out = response.getWriter();
+//        out.write(JSONObject.toJSONString(result));
+//        out.flush();
+//        out.close();
     }
 }
